@@ -1,0 +1,28 @@
+inherit qt4-qmake
+
+DESCRIPTION="Qt SOAP protocol library"
+HOMEPAGE="http://qt.nokia.com/products/qt-addons/solutions-archive"
+SRC_URI="mirror://qt/qt/solutions/lgpl/${P}-opensource.tar.gz"
+SRC_DIR="${P}-opensource"
+
+PKG_NAMES="libQtSoap2.7_1 libQtSoap-devel"
+libQtSoap2_7_1_CONTENTS="usr/bin/*-2.7-1.dll"
+libQtSoap_devel_CONTENTS="usr/include/ usr/lib/ usr/share/doc/"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	# common.pri looks for this setting specifically in config.pri
+	echo "SOLUTIONS_LIBRARY = yes" > config.pri
+	cygqmake4
+	cygmake
+}
+
+src_install() {
+	cd ${B}
+	dobin lib/*.dll
+	dolib lib/*.a
+	insinto ${QT4_INCLUDEDIR}/QtSoap
+	doins src/QtSoap* src/*.h
+}
+DOCS="LGPL_EXCEPTION.txt LICENSE.* README.TXT"

@@ -1,0 +1,6 @@
+category: KDE
+requires: libQtSoap2.7_1 libQtCore4-devel libQtNetwork4-devel libQtXml4-devel
+external-source: qtsoap
+sdesc: "Qt SOAP protocol library (development)"
+ldesc: "The Qt SOAP project provides basic web service support with
+version 1.1 of the SOAP protocol."
